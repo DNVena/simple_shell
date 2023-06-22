@@ -1,5 +1,6 @@
 #ifndef main_h
 #define main_h
+char *_strdup(char *str)
 char *_strcpy(char *dest, char *src);
 int _strlen(char *str);
 int _len(char *buffer);
