@@ -16,6 +16,10 @@ int _strlen(char *str)
 {
 	int i = 0;
 
+	if (str == NULL)
+	{
+		return (0);
+	}
 	while (*str != '\0')
 	{
 		i++;
@@ -36,6 +40,10 @@ char *_strcpy(char *dest, char *src)
 {
 	int i;
 
+	if (dest == src | src == 0)
+	{
+		return (dest);
+	}
 	for (i = 0; src[i] != '\0'; i++)
 	{
 	dest[i] = src[i];
