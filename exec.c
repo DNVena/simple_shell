@@ -1,19 +1,35 @@
-#include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <dirent.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
- * _exec - execute commands
+ * prep - prepares arguments
+ * @buffer: takes pointer
+ * Return: pointer to pointer
+ */
+char **prep(char *buffer, char **path)
+{
+	char **tokens, **args;
+
+	tokens = tokenize(buffer);
+	args = checker(path, tokens);
+
+	return (args);
+}
+
+/**
+ * _exec - executes commands
  * @args: takes pointer to array of arguments
+ * @envp: takes pointet to pointer
  * Return: void
  */
-
-void _exec(char **args)
+void _exec(char **args, char **envp)
 {
-	extern char **environ;
-
-	if  (execve(args[0], args, environ) == -1)
+	if (execve(args[0], args, envp) == -1)
 	{
-		perror("Error: command not found");
+		perror("Error: could not execute");
 	}
 }
