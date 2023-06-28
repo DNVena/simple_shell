@@ -22,4 +22,6 @@ char *command(char **path, char *filename);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, int n);
 int _fork(char **args, char **envp);
+void puts_err(char c);
+void puts_error(char *hsh, char *arg);
 #endif
