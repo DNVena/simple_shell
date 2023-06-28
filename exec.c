@@ -3,11 +3,40 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "main.h"
 
 /**
+ * _fork - forks
+ * @args: takes pointer to pointer
+ * @envp: takes pointer to pointer
+ * Return: integer
+ */
+int _fork(char **args, char **envp)
+{
+	pid_t pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("could not fork");
+		return (-1);
+	}
+	if (pid == 0)
+	{
+		_exec(args, envp);
+	}
+	else
+	{
+		wait(NULL);
+	}
+	return (0);
+}
+/**
  * prep - prepares arguments
  * @buffer: takes pointer
+ * @path: takes pointer to pointer
  * Return: pointer to pointer
  */
 char **prep(char *buffer, char **path)
