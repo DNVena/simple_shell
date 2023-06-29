@@ -8,9 +8,11 @@
 
 /**
  * main - runs simple shell
+ * @argc: unused
+ * @argv: takes pointer to pointer
  * Return: Always (0)
  */
-int main(void)
+int main(int __attribute__ ((unused)) argc, char **argv)
 {
 	char **args, **envp, **path, *buffer = NULL, *prompt = "$ ";
 	ssize_t result;
@@ -35,7 +37,7 @@ int main(void)
 			args = prep(buffer, path);
 			if (args == NULL)
 			{
-				perror("Did not find command");
+				puts_error(argv[0], buffer);
 			}
 			else
 			{
