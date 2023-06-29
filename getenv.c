@@ -122,24 +122,12 @@ char *find_path(char **path, char *filename)
 char *command(char **path, char *filename)
 {
 	char *token;
-	char *com, *need;
+	char *com;
 	char *command;
-	struct stat fileInfo;
 	char s = '/';
-	int len, i;
-	char *pat = "/bin/";
+	int len;
 
-	i = _strlen(pat);
-	need = _strncat(pat, filename, i);
-
-	if (stat(need, &fileInfo) == 0)
-	{
-		token = find_path(path, filename);
-	}
-	else
-	{
-		return (filename);
-	}
+	token = find_path(path, filename);
 	len = _strlen(filename);
 	com = _strncat(token, &s, 1);
 	command = _strncat(com, filename, len);
