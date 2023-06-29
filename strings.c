@@ -31,59 +31,48 @@ int _strlen(char *str)
 /**
  * _strcpy - Copy a string
  * @dest: Destination value
- * @src: Source value
+ * @src: Source string
  * Return: the pointer to dest
  */
 
 char *_strcpy(char *dest, char *src)
-
 {
-	int i;
-
-	if ((dest == src) || (src == 0))
+	if (dest == src || src == NULL)
 	{
 		return (dest);
 	}
-	for (i = 0; src[i] != '\0'; i++)
+	char i = 0;
+
+	while ((dest[i] = src[i]) != '\0')
 	{
-	dest[i] = src[i];
+		i++;
 	}
-	dest[i++] = '\0';
 	return (dest);
 }
 
 /**
- * _strdup - it returns a pointer to a new string
+ * duplicate_string - it returns a pointer to a new string
  * which is a copy of the string.
  * @str: string that should be be copied.
  * Return: NULL, if str = NULL
  */
 
-char *_strdup(char *str)
+char *duplicate_string(const char *str)
 {
-	int e = 0, t = 1;
-	char *h;
-
 	if (str == NULL)
 		return (NULL);
 
-	while (str[t])
-	{
-		t++;
-	}
+	unsigned int length = strlen(str);
+        char *duplicate = malloc((length + 1) * sizeof(char));
 
-	h = malloc((sizeof(char) * t) + 1);
-
-	if (h == NULL)
+	if (duplicate == NULL)
 		return (NULL);
 
-	while (e < t)
+	for (size_t i = 0; i <= length; i++)
 	{
-		h[e] = str[e];
-		e++;
+		duplicate[i] = str[i]
 	}
-	h[e] = '\0';
-	return (h);
+	return (duplicate);
 }
 
 /**
@@ -93,22 +82,18 @@ char *_strdup(char *str)
  * @n: takes an integer
  * Return: Always 0
  */
-char *_strncat(char *dest, char *src, int n)
+char *_strncat(char *dest, const char *src, size_t n)
 {
-	int i = 0;
-	int j = 0;
+	size_t dest_len = strlen(dest);  /* Current length of the destination string */
 
-	while (dest[i] != '\0')
+	size_t i;
+
+	for (i = 0; i < n && src[i] != '\0'; i++)
 	{
-		i++;
+		dest[dest_length + i] = src[i];
 	}
-	while (j < n && src[j] != '\0')
-	{
-		dest[i] = src[j];
-		j++;
-		i++;
-	}
-	dest[i] = '\0';
+	dest[dest_length + i] = '\0';  /* Null-terminate the destination string */
+
 	return (dest);
 }
 
@@ -118,6 +103,7 @@ char *_strncat(char *dest, char *src, int n)
  * @s2: takes character pointer
  * Return: Always 0
  */
+
 int _strcmp(char *s1, char *s2)
 {
 	int com;

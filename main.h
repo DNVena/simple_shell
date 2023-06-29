@@ -6,7 +6,7 @@ int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 char *duplicate_string(const char *str);
-char *_strncat(char *dest, char *src, int n);
+char *_strncat(char *dest, const char *src, size_t n);
 void _putchar(char c);
 int len_buf(char *buffer);
 char **tokenize(char *buffer);
