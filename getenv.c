@@ -2,6 +2,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include "main.h"
 
 /**
@@ -121,15 +122,23 @@ char *find_path(char **path, char *filename)
 char *command(char **path, char *filename)
 {
 	char *token;
-	char *com;
+	char *com, *need;
 	char *command;
+	struct stat fileInfo;
 	char s = '/';
-	int len;
+	int len, i;
+	char *pat = "/bin/";
 
-	token = find_path(path, filename);
-	if (token == NULL)
+	i = _strlen(pat);
+	need = _strncat(pat, filename, i);
+
+	if (stat(need, &fileInfo) == 0)
 	{
-		return (NULL);
+		token = find_path(path, filename);
+	}
+	else
+	{
+		return (filename);
 	}
 	len = _strlen(filename);
 	com = _strncat(token, &s, 1);

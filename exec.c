@@ -41,12 +41,34 @@ int _fork(char **args, char **envp)
  */
 char **prep(char *buffer, char **path)
 {
-	char **tokens, **args;
+	char **tokens, *arg;
 
 	tokens = tokenize(buffer);
-	args = checker(path, tokens);
+	if ((*tokens)[0] == '/')
+	{
+		if (access(tokens[0], F_OK) == -1)
+		{
+			return (NULL);
+		}
+		else
+		{
+			return (tokens);
+		}
+	}
+	else
+	{
+		arg = command(path, tokens[0]);
+		if (arg[0] != '/')
+		{
+			return (NULL);
+		}
+		else
+		{
+			tokens[0] = arg;
+		}
+	}
 
-	return (args);
+	return (tokens);
 }
 
 /**
