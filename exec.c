@@ -47,6 +47,9 @@ char **prep(char *buffer, char **path)
 	tokens = tokenize(buffer);
 	if (_strcmp(tokens[0], ex) == 0)
 	{
+		free(buffer);
+		free(path);
+		free(tokens);
 		exit(0);
 	}
 	if ((*tokens)[0] == '/')
