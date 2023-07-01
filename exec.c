@@ -41,15 +41,12 @@ int _fork(char **args, char **envp)
  */
 char **prep(char *buffer, char **path)
 {
-	char **tokens, *arg;
-	char *ex = "exit";
+	char **tokens, *arg, *ex = "exit";
 
 	tokens = tokenize(buffer);
 	if (_strcmp(tokens[0], ex) == 0)
 	{
-		free(buffer);
-		free(path);
-		free(tokens);
+		_free(buffer, path, tokens);
 		exit(0);
 	}
 	if ((*tokens)[0] == '/')
@@ -75,7 +72,6 @@ char **prep(char *buffer, char **path)
 			tokens[0] = arg;
 		}
 	}
-
 	return (tokens);
 }
 

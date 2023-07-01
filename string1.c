@@ -37,3 +37,32 @@ int _strncmp(char *s1, char *s2, int n)
 	}
 	return (0);
 }
+
+/**
+ * print_env - prints env
+ * @envp: takes pointer to pointer
+ * Return: integer
+ */
+int print_env(char **envp)
+{
+	size_t i = 0;
+
+	while (*envp != NULL)
+	{
+		while ((*envp)[i] != '\0')
+		{
+			++i;
+		}
+		write(STDOUT_FILENO, *envp, i);
+		write(STDOUT_FILENO, "\n", 1);
+		++envp;
+	}
+	return (0);
+}
+
+void _free(char *buffer, char **path, char **tokens)
+{
+	free(buffer);
+	free(path);
+	free(tokens);
+}
