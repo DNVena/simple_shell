@@ -44,6 +44,10 @@ char **prep(char *buffer, char **path)
 	char **tokens, *arg, *ex = "exit";
 
 	tokens = tokenize(buffer);
+	if (tokens == NULL)
+	{
+		return (0);
+	}
 	if (_strcmp(tokens[0], ex) == 0)
 	{
 		_free(buffer, path, tokens);

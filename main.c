@@ -14,7 +14,7 @@
  */
 int main(int __attribute__ ((unused)) argc, char **argv)
 {
-	char **args, **envp, **path, *buffer = NULL, *envy = "env", *prompt = "$ ";
+	char **args, **envp, **path, *buffer = NULL,  *prompt = "$ ";
 	ssize_t result;
 	size_t len = 0;
 
@@ -31,9 +31,9 @@ int main(int __attribute__ ((unused)) argc, char **argv)
 		{
 			break;
 		}
-		if (_strcmp(buffer, envy) == 0)
+		if (_isspace(buffer) == 0)
 		{
-			print_env(envp);
+			free(buffer);
 			return (0);
 		}
 		else

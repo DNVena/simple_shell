@@ -22,6 +22,6 @@ int _strncmp(char *s1, char *s2, int n);
 int _fork(char **args, char **envp);
 void puts_err(char c);
 void puts_error(char *hsh, char *arg);
-int print_env(char **envp);
 void _free(char *buffer, char **path, char **tokens);
+int _isspace(char *str);
 #endif
