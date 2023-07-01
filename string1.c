@@ -38,6 +38,13 @@ int _strncmp(char *s1, char *s2, int n)
 	return (0);
 }
 
+/**
+ * _free - frees memory
+ * @buffer: takes pointer
+ * @path: takes pointer
+ * @tokens: takes pointer
+ * Return: void
+ */
 void _free(char *buffer, char **path, char **tokens)
 {
 	free(buffer);

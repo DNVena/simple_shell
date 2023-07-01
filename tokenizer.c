@@ -16,11 +16,11 @@ int len_buf(char *buffer)
 	char *lines;
 	int num = 0;
 
-	lines = strtok(buffer, " \t\r\n");
+	lines = strtok(buffer, " \t\r\v\n");
 	while (lines != NULL)
 	{
 		num++;
-		lines = strtok(NULL, " \t\r\n");
+		lines = strtok(NULL, " \t\r\v\n");
 	}
 	num++;
 	return (num);
@@ -46,11 +46,11 @@ char **tokenize(char *buffer)
 
 	if (!args)
 		return (NULL);
-	token = strtok(buffer, " \t\r\n");
+	token = strtok(buffer, " \t\r\v\n");
 	while (token != NULL)
 	{
 		args[i++] = token;
-		token = strtok(NULL, " \t\r\n");
+		token = strtok(NULL, " \t\r\v\n");
 	}
 	args[i] = NULL;
 	free(buf_cpy);

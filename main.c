@@ -14,9 +14,10 @@
  */
 int main(int __attribute__ ((unused)) argc, char **argv)
 {
-	char **args, **envp, **path, *buffer = NULL,  *prompt = "$ ";
+	char **args, **envp, **path, *my_prob, *buffer = NULL,  *prompt = "$ ";
 	ssize_t result;
 	size_t len = 0;
+	char *fix = malloc(sizeof(char) * 1024);
 
 	envp = environ;
 	while (1)
@@ -31,14 +32,11 @@ int main(int __attribute__ ((unused)) argc, char **argv)
 		{
 			break;
 		}
-		if (_isspace(buffer) == 0)
-		{
-			free(buffer);
-			return (0);
-		}
 		else
 		{
-			path = sep_path(envp);
+			my_prob = _getenv(envp);
+			_strcpy(fix, my_prob);
+			path = sep_path(fix);
 			args = prep(buffer, path);
 			if (args == NULL)
 			{
@@ -52,6 +50,7 @@ int main(int __attribute__ ((unused)) argc, char **argv)
 			free(args);
 		}
 	}
+	free(fix);
 	free(buffer);
 	return (0);
 }

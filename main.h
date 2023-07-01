@@ -9,7 +9,7 @@ char *_strncat(char *dest, char *src, int n);
 void _putchar(char c);
 int len_buf(char *buffer);
 char **tokenize(char *buffer);
-char **sep_path(char **envp);
+char **sep_path(char *my_prob);
 int len_path(char *buffer);
 char *_getenv(char **envp);
 void builtin_exit(char **args);

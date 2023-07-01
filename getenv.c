@@ -50,12 +50,12 @@ int len_path(char *buffer)
 
 /**
  * sep_path - tokenizes path
- * @envp: takes a pointer
+ * @my_prob: takes a pointer
  * Return: pointer to a pointer
  */
-char **sep_path(char **envp)
+char **sep_path(char *my_prob)
 {
-	char *token, *path;
+	char *token;
 	int j = 0;
 	int arr_len;
 	char **tokens;
@@ -63,11 +63,9 @@ char **sep_path(char **envp)
 
 	if (!buf_cpy)
 		return (NULL);
-	envp = environ;
-	path = _getenv(envp);
-	_strcpy(buf_cpy, path);
+	_strcpy(buf_cpy, my_prob);
 	arr_len = len_path(buf_cpy);
-	token = strtok(path, ":");
+	token = strtok(my_prob, ":");
 	tokens = malloc(sizeof(char *) * (arr_len + 1));
 	if (!tokens)
 		return (NULL);
