@@ -33,13 +33,17 @@ int len_buf(char *buffer)
  */
 char **tokenize(char *buffer)
 {
-	int i = 0, num;
+	int i = 0, num, len;
 	char *token;
 	char **args;
-	char *buf_cpy = (char *)malloc(1024);
+	char *buf_cpy;
 
-	if (!buf_cpy)
+	if (_isspace(buffer) == 0)
+	{
 		return (NULL);
+	}
+	len = _strlen(buffer);
+	buf_cpy = (char *)malloc(sizeof(char) * (len + 1));
 	_strcpy(buf_cpy, buffer);
 	num = len_buf(buf_cpy);
 	args = malloc(sizeof(char *) * (num + 1));
